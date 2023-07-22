@@ -10,17 +10,17 @@
 
 void bubble_sort(int *array, size_t size)
 {
-	size_t i, j, unsortedIndex = size - 1;
+	size_t i, j;
 	int tmp;
-	bool didSwap = false;
+	bool didSwap = true;
 
 	if (!array || size < 2)
 		return;
 
-	for (i = 0; i < size; i++)
+	for (i = 0; i < size && didSwap; i++)
 	{
 		didSwap = false;
-		for (j = 0; j < unsortedIndex; j++)
+		for (j = 0; j < (size - 1 - i); j++)
 		{
 			if (array[j] > array[j + 1])
 			{
@@ -31,9 +31,5 @@ void bubble_sort(int *array, size_t size)
 				didSwap = true;
 			}
 		}
-		if (!didSwap)
-			break;
-
-		unsortedIndex -= 1;
 	}
 }
