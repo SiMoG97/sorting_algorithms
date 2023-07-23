@@ -12,7 +12,6 @@ void selection_sort(int *array, size_t size)
 {
 	int temp;
 	size_t i, j, min;
-	bool didSwap = false;
 
 	if (!array || size < 2)
 		return;
@@ -20,17 +19,11 @@ void selection_sort(int *array, size_t size)
 	for (i = 0; i < size - 1; i++)
 	{
 		min = i;
-		didSwap = false;
 		for (j = i + 1; j < size; j++)
-		{
 			if (array[j] < array[min])
-			{
 				min = j;
-				didSwap = true;
-			}
-		}
 
-		if (!didSwap)
+		if (min == i)
 			continue;
 
 		temp = array[i];
