@@ -1,8 +1,8 @@
 #include "sort.h"
 
 void swap(int *x, int *y);
-void quick_sort_rec(int *array, size_t start, size_t end, size_t size);
-size_t partition(int *array, size_t start, size_t end, size_t size);
+void quick_sort_rec(int *array, int start, int end, size_t size);
+int partition(int *array, int start, int end, size_t size);
 
 
 /**
@@ -48,16 +48,15 @@ void swap(int *x, int *y)
  * Return: Nothing
  */
 
-void quick_sort_rec(int *array, size_t start, size_t end, size_t size)
+void quick_sort_rec(int *array, int start, int end, size_t size)
 {
-	size_t pivot_index;
+	int pivot_index;
 
 	if (start >= end)
 		return;
 
 	pivot_index = partition(array, start, end, size);
-	quick_sort_rec(array, start, pivot_index == 0 ?
-					pivot_index : pivot_index - 1, size);
+	quick_sort_rec(array, start, pivot_index - 1, size);
 	quick_sort_rec(array, pivot_index + 1, end, size);
 }
 
@@ -72,10 +71,10 @@ void quick_sort_rec(int *array, size_t start, size_t end, size_t size)
  * Return: The index where the pivot element is placed after partitioning.
  */
 
-size_t partition(int *array, size_t start, size_t end, size_t size)
+int partition(int *array, int start, int end, size_t size)
 {
 	int pivot = array[end];
-	size_t i = start, j;
+	int i = start, j;
 
 	for (j = start; j < end; j++)
 	{
